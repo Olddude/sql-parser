@@ -1,6 +1,5 @@
 {
-  "protocol": "http://",
-  "host": "0.0.0.0",
-  "port": 80,
+  "protocol": "https://",
+  "host": "sql-parser.azurewebsites.net",
   "rootPath": "/v1"
 }

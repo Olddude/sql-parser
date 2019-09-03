@@ -8,9 +8,9 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 
 import config from './webapi.config.json';
 
-const { protocol, host, port, rootPath } = config;
+const { protocol, host, rootPath } = config;
 
-const API_ROOT = `${protocol}${host}:${port}${rootPath}`;
+const API_ROOT = `${protocol}${host}${rootPath}`;
 
 container.bind('API_ROOT').toConstantValue(API_ROOT);
 
