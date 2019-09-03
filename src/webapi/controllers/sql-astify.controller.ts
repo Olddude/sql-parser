@@ -2,6 +2,7 @@ import { BaseHttpController, controller, httpPost } from 'inversify-express-util
 import { inject } from 'inversify';
 import { HypermediaResource } from '../hypermedia/hal-resource';
 import { SqlParser } from '../../services/sql-parser';
+import { Logger } from '../../services/logger';
 
 export const SqlAstifyControllerRoute = '/astify/';
 
@@ -10,6 +11,7 @@ export class SqlAstifyControllerController extends BaseHttpController {
 
   @inject('API_ROOT') private apiRoot: string;
   @inject('SqlParser') private sqlParser: SqlParser;
+  @inject('Logger') private logger: Logger;
 
   @httpPost('')
   private post(): Promise<HypermediaResource> {
@@ -31,6 +33,8 @@ export class SqlAstifyControllerController extends BaseHttpController {
         _links: { self }
       });
     }
+
+    this.logger.info(JSON.stringify(this.httpContext.request.body));
 
     return this.sqlParser.astify(this.httpContext.request.body.sql)
       .then(_ => ({ result: _, _links: { self } }))
