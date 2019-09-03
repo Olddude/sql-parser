@@ -22,6 +22,4 @@ server.setConfig(_ => {
 
 const app = server.build();
 
-app.listen(port, host, () => {
-  console.log(`listening on ${API_ROOT}`);
-});
+export default app;
