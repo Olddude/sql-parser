@@ -14,11 +14,25 @@ export class SqlAstifyControllerController extends BaseHttpController {
   @httpPost('')
   private post(): Promise<HypermediaResource> {
 
-    const sql = this.httpContext.request.body.q;
+    this.httpContext.response.setHeader('Content-Type', 'application/hal+json');
 
     const self = { href: `${this.apiRoot}${SqlAstifyControllerRoute}`, method: 'POST' };
 
-    return this.sqlParser.astify(sql)
+    if (this.httpContext.request.header('Content-Type') !== 'application/json') {
+      return Promise.resolve({
+        errors: ['request content type must be application/json'],
+        _links: { self }
+      });
+    }
+
+    if (!this.httpContext.request.body || !this.httpContext.request.body.sql) {
+      return Promise.resolve({
+        errors: ['sql is not defined in request body'],
+        _links: { self }
+      });
+    }
+
+    return this.sqlParser.astify(this.httpContext.request.body.sql)
       .then(_ => ({ result: _, _links: { self } }))
       .catch(_ => ({ errors: [_.toString()], _links: { self } }));
   }

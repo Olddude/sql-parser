@@ -12,6 +12,9 @@ export class IndexController extends BaseHttpController {
 
   @httpGet('')
   private async get(): Promise<HypermediaResource> {
+
+    this.httpContext.response.setHeader('Content-Type', 'application/hal+json');
+
     return {
       _links: {
         self: {
@@ -19,7 +22,8 @@ export class IndexController extends BaseHttpController {
         },
         astify: {
           href: `${this.apiRoot}${SqlAstifyControllerRoute}`,
-          method: 'POST'
+          method: 'POST',
+          description: 'send a sql inside body like { sql: "SELECT * FROM SOMEWHERE" }'
         }
       }
     };
