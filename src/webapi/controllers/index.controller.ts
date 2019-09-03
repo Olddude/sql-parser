@@ -10,11 +10,8 @@ export class IndexController extends BaseHttpController {
 
   @inject('API_ROOT') private apiRoot: string;
 
-  @httpGet('')
+  @httpGet('', 'HalMiddleware')
   private async get(): Promise<HypermediaResource> {
-
-    this.httpContext.response.setHeader('Content-Type', 'application/hal+json');
-
     return {
       _links: {
         self: {
