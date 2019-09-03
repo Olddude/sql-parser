@@ -1,6 +1,6 @@
 import { BaseHttpController, controller, httpPost } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { HypermediaResource } from '../hypermedia/hal-resource';
+import { HypermediaResource } from '../hal/hal-resource';
 import { SqlParser } from '../../services/sql-parser';
 import { Logger } from '../../services/logger';
 

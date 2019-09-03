@@ -1,6 +1,6 @@
 import { BaseHttpController, httpGet, controller } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { HypermediaResource } from '../hypermedia/hal-resource';
+import { HypermediaResource } from '../hal/hal-resource';
 import { SqlAstifyControllerRoute } from './sql-astify.controller';
 
 export const IndexControllerRoute = '/';
