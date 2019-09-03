@@ -32,7 +32,8 @@ export class SqlAstifyControllerController extends BaseHttpController {
       });
     }
 
-    this.logger.info(JSON.stringify(this.httpContext.request.headers));
+    this.logger.info(this.httpContext.request.headers);
+    this.logger.info(this.httpContext.request.cookies);
 
     return this.sqlParser.astify(this.httpContext.request.body.sql)
       .then(_ => ({ result: _, _links: { self } }))
