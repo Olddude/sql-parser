@@ -20,7 +20,7 @@ export class IndexController extends BaseHttpController {
         astify: {
           href: `${this.apiRoot}${SqlAstifyControllerRoute}`,
           method: 'POST',
-          description: 'send a sql inside body like { sql: "SELECT * FROM SOMEWHERE" }'
+          description: 'send a sql inside body like { "sql": "SELECT * FROM SOMEWHERE" }'
         }
       }
     };
