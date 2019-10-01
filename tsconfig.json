@@ -13,6 +13,7 @@
     "types": [
       "node",
       "express",
+      "cors",
       "reflect-metadata"
     ],
     "lib": [

@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+import cors from 'cors';
 
 import 'reflect-metadata';
 import container from './container';
@@ -16,7 +17,14 @@ container.bind('API_ROOT').toConstantValue(API_ROOT);
 
 const server = new InversifyExpressServer(container, null, { rootPath });
 server.setConfig(_ => {
+  _.use(bodyParser.urlencoded());
   _.use(bodyParser.json());
+  _.use(cors({
+    origin: '*',
+    methods: 'OPTIONS,GET,POST',
+    preflightContinue: false,
+    optionsSuccessStatus: 200
+  }));
   _.use(logger('combined'));
 });
 
