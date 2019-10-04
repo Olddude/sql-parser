@@ -16,7 +16,11 @@ export class SqlAstifyControllerController extends BaseHttpController {
   @httpPost('', 'HalMiddleware')
   private post(): Promise<HypermediaResource> {
 
-    const self = { href: `${this.apiRoot}${SqlAstifyControllerRoute}`, method: 'POST' };
+    const self = {
+      href: `${this.apiRoot}${SqlAstifyControllerRoute}`,
+      method: 'POST',
+      description: 'send a sql inside body like { "sql": "SELECT * FROM SOMEWHERE" }'
+    };
 
     if (this.httpContext.request.header('Content-Type') !== 'application/json') {
       return Promise.resolve({
@@ -34,7 +38,8 @@ export class SqlAstifyControllerController extends BaseHttpController {
 
     this.logger.info(
       this.httpContext.request.headers,
-      this.httpContext.request.cookies
+      this.httpContext.request.cookies,
+      this.httpContext.request.body
     );
 
     return this.sqlParser.astify(this.httpContext.request.body.sql)
