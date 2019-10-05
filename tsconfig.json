@@ -13,6 +13,7 @@
     "types": [
       "node",
       "express",
+      "mssql",
       "cors",
       "reflect-metadata"
     ],
@@ -20,5 +21,8 @@
       "esnext",
       "dom"
     ]
-  }
+  },
+  "include": [
+    "**/*.json"
+  ]
 }

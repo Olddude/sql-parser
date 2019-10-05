@@ -2,6 +2,7 @@ import { BaseHttpController, httpGet, controller } from 'inversify-express-utils
 import { inject } from 'inversify';
 import { HypermediaResource } from '../hal/hal-resource';
 import { SqlAstifyControllerRoute } from './sql-astify.controller';
+import { MessagesControllerRoute } from './messages.controller';
 
 export const IndexControllerRoute = '/';
 
@@ -21,6 +22,9 @@ export class IndexController extends BaseHttpController {
           href: `${this.apiRoot}${SqlAstifyControllerRoute}`,
           method: 'POST',
           description: 'send a sql inside body like { "sql": "SELECT * FROM SOMEWHERE" }'
+        },
+        messages: {
+          href: `${this.apiRoot}${MessagesControllerRoute}`
         }
       }
     };

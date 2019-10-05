@@ -1,0 +1,12 @@
+{
+  "db": {
+    "server": "sql-parser-db.database.windows.net",
+    "database": "sql-parser-db",
+    "user": "olddude"
+  },
+  "api": {
+    "protocol": "http://",
+    "host": "localhost:1337",
+    "rootPath": "/v1"
+  }
+}

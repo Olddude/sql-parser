@@ -6,10 +6,26 @@ import 'reflect-metadata';
 import container from './container';
 
 import { InversifyExpressServer } from 'inversify-express-utils';
+import { Config } from '../business/config';
 
-import config from './webapi.config.json';
+import fs from 'fs';
+import path from 'path';
 
-const { protocol, host, rootPath } = config;
+const configMap = {
+  development: './webapi.development.config.json',
+  production: './webapi.production.config.json'
+};
+
+const config: Config = JSON.parse(fs.readFileSync(
+  path.resolve(__dirname, configMap[process.env.NODE_ENV]),
+  { encoding: 'utf-8' }
+));
+
+console.log(config);
+
+container.bind('APP_CONFIG').toConstantValue(config);
+
+const { protocol, host, rootPath } = config.api;
 
 const API_ROOT = `${protocol}${host}${rootPath}`;
 

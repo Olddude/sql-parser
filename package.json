@@ -19,6 +19,7 @@
     "inversify": "^5.0.1",
     "inversify-express-utils": "^6.3.2",
     "morgan": "^1.9.1",
+    "mssql": "^5.1.0",
     "node-sql-parser": "^1.4.1",
     "reflect-metadata": "^0.1.13",
     "uri-templates": "^0.2.0"
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@types/express": "^4.17.1",
     "@types/inversify": "^2.0.33",
+    "@types/mssql": "^4.3.1",
     "@types/node": "^12.7.2",
     "@types/node-sql-parser": "^1.0.0",
     "@types/uri-templates": "^0.1.30",
