@@ -6,24 +6,19 @@ import 'reflect-metadata';
 import container from './container';
 
 import { InversifyExpressServer } from 'inversify-express-utils';
-import { Config } from '../business/config';
 
-import fs from 'fs';
-import path from 'path';
+import developmentConfig from './webapi.development.config.json';
+import productionConfig from './webapi.production.config.json';
 
-const configMap = {
-  development: './webapi.development.config.json',
-  production: './webapi.production.config.json'
-};
+console.log('running on NODE_ENV %s', process.env.NODE_ENV);
 
-const config: Config = JSON.parse(fs.readFileSync(
-  path.resolve(__dirname, configMap[process.env.NODE_ENV]),
-  { encoding: 'utf-8' }
-));
+if (process.env.NODE_ENV === 'production') {
+  container.bind('APP_CONFIG').toConstantValue(productionConfig);
+} else {
+  container.bind('APP_CONFIG').toConstantValue(developmentConfig);
+}
 
-console.log(config);
-
-container.bind('APP_CONFIG').toConstantValue(config);
+const config: any = container.get('APP_CONFIG');
 
 const { protocol, host, rootPath } = config.api;
 

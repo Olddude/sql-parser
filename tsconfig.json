@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
+    "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
@@ -10,19 +11,15 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "types": [
-      "node",
-      "express",
-      "mssql",
-      "cors",
-      "reflect-metadata"
-    ],
     "lib": [
       "esnext",
       "dom"
     ]
   },
   "include": [
-    "**/*.json"
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

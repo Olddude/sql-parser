@@ -1,8 +1,11 @@
 {
   "db": {
-    "server": "sql-parser-db.database.windows.net",
+    "host": "localhost",
+    "port": 1434,
     "database": "sql-parser-db",
-    "user": "olddude"
+    "dialect": "mssql",
+    "username": "sqlparser",
+    "password": ""
   },
   "api": {
     "protocol": "http://",
