@@ -1,0 +1,15 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 1434,
+    "database": "sql-parser-db",
+    "dialect": "mssql",
+    "username": "sqlparser",
+    "password": ""
+  },
+  "api": {
+    "protocol": "http://",
+    "host": "localhost:1337",
+    "rootPath": "/v1"
+  }
+}

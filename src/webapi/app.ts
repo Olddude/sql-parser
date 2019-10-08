@@ -7,9 +7,20 @@ import container from './container';
 
 import { InversifyExpressServer } from 'inversify-express-utils';
 
-import config from './webapi.config.json';
+import developmentConfig from './webapi.development.config.json';
+import productionConfig from './webapi.production.config.json';
 
-const { protocol, host, rootPath } = config;
+console.log('running on NODE_ENV %s', process.env.NODE_ENV);
+
+if (process.env.NODE_ENV === 'production') {
+  container.bind('APP_CONFIG').toConstantValue(productionConfig);
+} else {
+  container.bind('APP_CONFIG').toConstantValue(developmentConfig);
+}
+
+const config: any = container.get('APP_CONFIG');
+
+const { protocol, host, rootPath } = config.api;
 
 const API_ROOT = `${protocol}${host}${rootPath}`;
 

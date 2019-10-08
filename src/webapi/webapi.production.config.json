@@ -1,0 +1,15 @@
+{
+  "db": {
+    "host": "",
+    "port": 1434,
+    "database": "",
+    "dialect": "",
+    "username": "",
+    "password": ""
+  },
+  "api": {
+    "protocol": "https://",
+    "host": "sql-parser.azurewebsites.net",
+    "rootPath": "/v1"
+  }
+}
